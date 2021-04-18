@@ -1,0 +1,23 @@
+<div class="app-login">
+  <form class="form-control" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        required
+        formControlName="username"
+        type="text"
+        placeholder="Username"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        required
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary">Login</button>
+  </form>
+</div>
