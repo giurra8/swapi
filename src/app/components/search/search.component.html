@@ -1,2 +1,23 @@
-<p>search works!</p>
-<div>Looky looky yonder</div>
+<div class="app-search">
+  <form class="form-control" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        required
+        formControlName="searchTerm"
+        type="text"
+        placeholder="Search"
+      />
+    </mat-form-field>
+    in
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="selectedCategory" (selectionChange)="getCategory($event.value)">
+        <mat-option *ngFor="let cat of categories" [value]="cat.value">
+          {{cat.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Search</button>
+  </form>
+</div>

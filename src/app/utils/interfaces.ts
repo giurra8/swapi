@@ -4,6 +4,11 @@ export interface User {
     password: string
 }
 
+export interface Category {
+  value: string;
+  viewValue: string;
+}
+
 export interface Character {
     name: string;
     height: string;
