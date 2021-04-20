@@ -11,42 +11,37 @@ import { User } from '@utils/interfaces';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  public loginInvalid = false;
   private formSubmitAttempt = false;
   private isLoggedIn = false;
   private returnUrl: string;
   private users: User[] = data;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.form = this.fb.group({
+    this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
-  async ngOnInit(): Promise<void> {}
+  ngOnInit() {}
 
-  async onSubmit(): Promise<void> {
-    this.loginInvalid = false;
+  onSubmit() {
     this.formSubmitAttempt = false;
       try {
         const username = this.form.get('username')?.value;
         const password = this.form.get('password')?.value;
         this.users.forEach((user) => {
           if (user.username === username && user.password === password) {
-            console.log("yay!");
-            this.loginInvalid = false;
+            this.isLoggedIn = true;
             this.router.navigate(['search']);
           }
         });
       } catch (err) {
-        this.loginInvalid = true;
+        this.isLoggedIn = false;
       }
-
-    console.log(this.loginInvalid);
   }
 }
